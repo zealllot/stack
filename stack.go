@@ -3,6 +3,7 @@ package stack
 import (
 	"container/list"
 	"errors"
+	"fmt"
 )
 
 type Stack struct {
@@ -25,4 +26,17 @@ func (s *Stack) Top() (interface{}, error) {
 		return nil, errors.New("The Stack is empty!")
 	}
 	return s.value.Back().Value, nil
+}
+
+func (s *Stack) Length() int {
+	return s.value.Len()
+}
+
+func (s *Stack)Print()  {
+	var here=s.value.Back()
+	fmt.Println(here.Value)
+	for (here.Prev()!=nil){
+		here=here.Prev()
+		fmt.Println(here.Value)
+	}
 }
